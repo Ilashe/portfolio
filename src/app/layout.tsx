@@ -15,20 +15,49 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Ilashe Benjamin Joseph -Solutions Architect & DevOps Engineer",
+  title: "Ilashe Benjamin Joseph | AWS Solutions Architect & DevOps Engineer",
   description:
-    "AWS Certified Solutions Architect and DevOps Engineer. Building cloud infrastructure that scales.",
+    "AWS Certified Solutions Architect, DevOps Engineer, and HubSpot Engineer. I design scalable cloud infrastructure, build CI/CD pipelines, automate workflows, and develop modern web applications. Available for consulting and new projects.",
   keywords: [
     "Ilashe Benjamin Joseph",
-    "Solutions Architect",
+    "AWS Solutions Architect",
     "DevOps Engineer",
-    "AWS",
+    "HubSpot Engineer",
     "Cloud Infrastructure",
+    "AWS Certified",
+    "CI/CD",
+    "Terraform",
+    "Docker",
+    "Next.js",
+    "Workflow Automation",
+    "Zapier",
+    "Power Automate",
+    "Claude Code",
+    "Technical Consultant",
   ],
+  authors: [{ name: "Ilashe Benjamin Joseph" }],
+  creator: "Ilashe Benjamin Joseph",
   openGraph: {
-    title: "Ilashe Benjamin Joseph -Solutions Architect & DevOps Engineer",
-    description: "AWS Certified cloud professional. Building infrastructure that scales.",
+    title: "Ilashe Benjamin Joseph | AWS Solutions Architect & DevOps Engineer",
+    description:
+      "AWS Certified Solutions Architect, DevOps Engineer, and HubSpot Engineer. Scalable cloud infrastructure, CI/CD automation, and modern web development.",
     type: "website",
+    locale: "en_US",
+    siteName: "Ilashe Benjamin Joseph Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ilashe Benjamin Joseph | AWS Solutions Architect & DevOps Engineer",
+    description:
+      "AWS Certified Solutions Architect, DevOps Engineer, and HubSpot Engineer. Scalable cloud infrastructure, CI/CD automation, and modern web development.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
