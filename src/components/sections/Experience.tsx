@@ -44,76 +44,77 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-surface/20" />
-      <div className="relative max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-20 relative">
-          <span className="section-number">06</span>
-          <div className="flex items-center gap-4 mb-4">
-            <div className="gold-line" />
-            <span className="text-gold text-xs uppercase tracking-[0.3em] font-body">
-              Career
-            </span>
-          </div>
-          <h2 className="font-display text-4xl lg:text-5xl font-bold text-cream">
-            Work Experience
-          </h2>
+    <section id="experience" className="relative py-16 lg:py-24 overflow-hidden">
+
+      <div className="absolute inset-0 bg-surface/15" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
+
+        {/* ── Header ── */}
+        <div className="flex items-center gap-4 mb-10 reveal">
+          <div className="gold-line" />
+          <span className="font-body text-2xs text-gold tracking-[0.35em] uppercase">Career</span>
+          <div className="flex-1 h-px bg-gradient-to-r from-gold/20 to-transparent" />
+          <span className="font-body text-2xs text-cream-faint tracking-[0.2em] uppercase">06</span>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Gold vertical line */}
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gold/60 via-gold/20 to-transparent" />
+        <h2
+          className="font-display font-bold text-cream leading-[1.0] tracking-tight mb-10 reveal"
+          style={{ fontSize: "clamp(2.4rem, 5vw, 4.5rem)" }}
+          data-delay="80"
+        >
+          Work<br />
+          <span className="text-gradient-gold">Experience</span>
+        </h2>
 
-          <div className="space-y-12 pl-10">
-            {experiences.map((exp, i) => (
-              <div key={i} className="relative">
-                {/* Timeline dot */}
-                <div
-                  className={`absolute -left-10 top-1.5 w-3 h-3 rounded-full border-2 ${
-                    exp.current
-                      ? "bg-gold border-gold animate-glow-pulse"
-                      : "bg-bg border-gold/40"
-                  }`}
-                  style={{ left: "-2.75rem" }}
-                />
+        {/* Entries */}
+        <div className="space-y-0">
+          {experiences.map((exp, i) => (
+            <div
+              key={i}
+              className="group reveal border-t border-white/[0.05] last:border-b"
+              data-delay={`${i * 100}`}
+            >
+              <div className="py-10 lg:py-12 grid lg:grid-cols-[260px_1fr] gap-6 lg:gap-12">
 
-                <div className="bg-surface border border-gold/10 p-7 hover:border-gold/25 transition-colors duration-300">
-                  {/* Header row */}
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
-                    <div>
-                      <h3 className="font-display font-bold text-cream text-xl">{exp.role}</h3>
-                      <div className="flex items-center gap-3 mt-1">
-                        <span className="font-body text-gold font-semibold text-sm">{exp.company}</span>
-                        <span className="text-cream-dim/30">·</span>
-                        <span className="font-body text-cream-dim/60 text-xs">{exp.type}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {exp.current && (
-                        <span className="px-2.5 py-1 text-xs font-body bg-gold/10 text-gold border border-gold/30 tracking-wide">
-                          Current
-                        </span>
-                      )}
-                      <span className="font-body text-cream-dim/50 text-sm">{exp.period}</span>
-                    </div>
+                {/* Left — meta */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-2 h-2 rounded-full flex-shrink-0 ${exp.current ? "bg-gold animate-glow-pulse" : "bg-cream-faint/40"}`}
+                    />
+                    <h3 className="font-display font-bold text-cream text-xl lg:text-2xl leading-tight group-hover:text-gold-light transition-colors duration-400">
+                      {exp.role}
+                    </h3>
                   </div>
-
-                  {/* Points */}
-                  <ul className="space-y-2.5">
-                    {exp.points.map((point, j) => (
-                      <li key={j} className="flex items-start gap-3 font-body text-cream-dim/70 text-sm leading-relaxed">
-                        <span className="text-gold/60 mt-1.5 shrink-0">—</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="font-body text-gold text-sm font-semibold tracking-wide pl-5">{exp.company}</p>
+                  <div className="flex items-center gap-3 pl-5">
+                    <span className="font-body text-2xs text-cream-faint tracking-[0.12em]">{exp.period}</span>
+                    <span className="w-1 h-1 rounded-full bg-cream-faint/30" />
+                    <span className="font-body text-2xs text-cream-faint tracking-[0.12em] uppercase">{exp.type}</span>
+                    {exp.current && (
+                      <span className="px-2 py-0.5 font-body text-2xs text-gold border border-gold/30 tracking-[0.12em] uppercase">
+                        Current
+                      </span>
+                    )}
+                  </div>
                 </div>
+
+                {/* Right — points */}
+                <ul className="space-y-3 pt-1">
+                  {exp.points.map((point, j) => (
+                    <li key={j} className="flex items-start gap-4">
+                      <div className="w-px h-4 bg-gold/30 flex-shrink-0 mt-1" />
+                      <span className="font-body text-cream-dim/75 text-sm leading-relaxed">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

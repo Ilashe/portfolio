@@ -13,80 +13,69 @@ const navLinks = [
 ];
 
 const socials = [
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/ilashe-joseph-524b90233",
-    icon: <FaLinkedin size={20} />,
-    color: "#0A66C2",
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/Ilashe",
-    icon: <FaGithub size={20} />,
-    color: "#e6edf3",
-  },
-  {
-    label: "Medium",
-    href: "https://medium.com/@bengilashe",
-    icon: <FaMedium size={20} />,
-    color: "#ffffff",
-  },
-  {
-    label: "Email",
-    href: "mailto:bengilashe@gmail.com",
-    icon: <FaEnvelope size={18} />,
-    color: "#EA4335",
-  },
+  { label: "LinkedIn", href: "https://linkedin.com/in/ilashe-joseph-524b90233", icon: <FaLinkedin size={15} /> },
+  { label: "GitHub", href: "https://github.com/Ilashe", icon: <FaGithub size={15} /> },
+  { label: "Medium", href: "https://medium.com/@bengilashe", icon: <FaMedium size={15} /> },
+  { label: "Email", href: "mailto:bengilashe@gmail.com", icon: <FaEnvelope size={14} /> },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-gold/10 py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Left — Name */}
-          <Link href="#hero" className="font-display text-xl font-bold text-cream tracking-wider">
+    <footer className="relative border-t border-white/[0.04]">
+
+      {/* Top strip */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-8">
+
+          {/* Logo */}
+          <Link
+            href="#hero"
+            className="font-display font-bold text-cream text-lg tracking-[0.12em] hover:text-gold-light transition-colors duration-300 flex-shrink-0"
+          >
             JIB<span className="text-gold">.</span>
           </Link>
 
-          {/* Center — Nav */}
-          <nav className="flex flex-wrap items-center justify-center gap-6">
+          {/* Nav */}
+          <nav className="flex flex-wrap items-center justify-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-body text-xs text-cream-dim/50 hover:text-gold transition-colors duration-200 uppercase tracking-widest"
+                className="font-body text-2xs text-cream-dim hover:text-cream transition-colors duration-300 tracking-[0.22em] uppercase"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Right — Socials */}
-          <div className="flex items-center gap-4">
-            {socials.map(({ label, href, icon, color }) => (
+          {/* Socials */}
+          <div className="flex items-center gap-4 flex-shrink-0">
+            {socials.map(({ label, href, icon }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
-                style={{ color: "rgba(201,168,76,0.35)" }}
-                className="transition-all duration-200 hover:scale-110"
-                onMouseEnter={(e) => (e.currentTarget.style.color = color)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(201,168,76,0.35)")}
+                className="text-cream-dim/60 hover:text-gold transition-colors duration-300"
               >
                 {icon}
               </a>
             ))}
           </div>
+
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gold/5 text-center">
-          <p className="font-body text-xs text-cream-dim/30 tracking-wide">
-            © 2026 Ilashe Benjamin Joseph. All rights reserved.
+        {/* Bottom bar */}
+        <div className="border-t border-white/[0.04] py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="font-body text-2xs text-cream-dim/60 tracking-[0.15em]">
+            &copy; 2026 Ilashe Benjamin Joseph. All rights reserved.
+          </p>
+          <p className="font-body text-2xs text-cream-dim/50 tracking-[0.12em]">
+            AWS Solutions Architect &middot; DevOps Engineer &middot; HubSpot Engineer
           </p>
         </div>
+
       </div>
     </footer>
   );
