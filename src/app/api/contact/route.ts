@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(req: NextRequest) {
   const { name, email, subject, message } = await req.json();
 
@@ -8,7 +16,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "All fields are required" }, { status: 400 });
   }
 
-  // Use Resend if API key is configured; otherwise fall back to a simple success
   const apiKey = process.env.RESEND_API_KEY;
 
   if (apiKey) {
@@ -18,15 +25,15 @@ export async function POST(req: NextRequest) {
         from: "Portfolio Contact <onboarding@resend.dev>",
         to: "bengilashe@gmail.com",
         replyTo: email,
-        subject: `[Portfolio] ${subject}`,
+        subject: `[Portfolio] ${escapeHtml(subject)}`,
         text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #C9A84C;">New Portfolio Message</h2>
-            <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
-            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>
+            <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
             <hr style="border-color: #C9A84C; opacity: 0.3;" />
-            <p style="white-space: pre-wrap;">${message}</p>
+            <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
           </div>
         `,
       });

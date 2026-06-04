@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 const stats = [
@@ -41,8 +39,8 @@ export default function About() {
                   src="/images/about.jpg"
                   alt="Ilashe Benjamin Joseph"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 384px"
                   className="object-cover z-10"
-                  priority
                 />
                 {/* Gold corner accent */}
                 <div className="absolute top-0 left-0 w-10 h-10 border-t border-l border-gold/50 z-20" />
