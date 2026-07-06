@@ -3,6 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import NetworkBackground from "@/components/NetworkBackground";
+import Magnetic from "@/components/Magnetic";
+import CountUp from "@/components/CountUp";
 
 const roles = [
   "AWS Solutions Architect",
@@ -70,7 +73,7 @@ export default function Hero() {
       ref={spotlightRef}
       className="relative min-h-screen flex flex-col overflow-hidden noise"
       style={{
-        background: "radial-gradient(ellipse 90% 70% at 60% -5%, rgba(201,168,76,0.06) 0%, transparent 55%), #070B14",
+        background: "radial-gradient(ellipse 90% 70% at 60% -5%, rgba(156,122,42,0.08) 0%, transparent 55%), #FAF7F0",
         "--sx": "50%",
         "--sy": "50%",
       } as React.CSSProperties}
@@ -82,6 +85,9 @@ export default function Hero() {
           background: "radial-gradient(600px circle at var(--sx) var(--sy), rgba(201,168,76,0.04) 0%, transparent 70%)",
         }}
       />
+
+      {/* Network / infrastructure node background */}
+      <NetworkBackground />
 
       {/* Fine dot grid */}
       <div
@@ -159,32 +165,38 @@ export default function Hero() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 mb-12 animate-fade-up" style={{ animationDelay: "240ms" }}>
-              <Link
-                href="#projects"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-bg font-body font-semibold text-xs tracking-[0.18em] uppercase hover:bg-gold-light transition-all duration-300"
-              >
-                View My Work
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:translate-x-1 transition-transform duration-300">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
-              <Link
-                href="/files/joseph-ilashe-cv.pdf"
-                target="_blank"
-                className="inline-flex items-center gap-3 px-8 py-4 border border-gold/40 text-gold font-body font-semibold text-xs tracking-[0.18em] uppercase hover:border-gold hover:bg-gold/8 transition-all duration-300"
-              >
-                Download CV
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                  <path d="M6.5 2v7m0 0L4 6.5m2.5 2.5L9 6.5M2.5 11h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
+              <Magnetic strength={0.25}>
+                <Link
+                  href="#projects"
+                  className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-bg font-body font-semibold text-xs tracking-[0.18em] uppercase hover:bg-gold-light transition-colors duration-300"
+                >
+                  View My Work
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:translate-x-1 transition-transform duration-300">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <Link
+                  href="/files/joseph-ilashe-cv.pdf"
+                  target="_blank"
+                  className="inline-flex items-center gap-3 px-8 py-4 border border-gold/40 text-gold font-body font-semibold text-xs tracking-[0.18em] uppercase hover:border-gold hover:bg-gold/8 transition-colors duration-300"
+                >
+                  Download CV
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                    <path d="M6.5 2v7m0 0L4 6.5m2.5 2.5L9 6.5M2.5 11h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              </Magnetic>
             </div>
 
             {/* Stats row */}
             <div className="flex gap-10 animate-fade-up" style={{ animationDelay: "320ms" }}>
               {[["3+", "AWS Certs"], ["5+", "Years Exp"], ["20+", "Projects"]].map(([num, label]) => (
                 <div key={label}>
-                  <div className="font-display text-3xl lg:text-4xl font-bold text-gold leading-none">{num}</div>
+                  <div className="font-display text-3xl lg:text-4xl font-bold text-gold leading-none">
+                    <CountUp value={num} />
+                  </div>
                   <div className="font-body text-2xs text-cream-faint uppercase tracking-[0.2em] mt-1.5">{label}</div>
                 </div>
               ))}
@@ -210,6 +222,7 @@ export default function Hero() {
                   src="/images/profile.png"
                   alt="Ilashe Benjamin Joseph"
                   fill
+                  sizes="(max-width: 1280px) 340px, 400px"
                   className="object-cover object-top"
                   priority
                 />
@@ -227,7 +240,7 @@ export default function Hero() {
       </div>
 
       {/* ── MARQUEE STRIP ── */}
-      <div className="relative border-t border-white/[0.04] overflow-hidden py-3.5">
+      <div className="relative border-t border-black/[0.06] overflow-hidden py-3.5">
         <div className="animate-marquee flex items-center gap-0">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="flex items-center gap-6 px-6">

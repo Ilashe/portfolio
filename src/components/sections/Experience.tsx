@@ -72,7 +72,7 @@ export default function Experience() {
           {experiences.map((exp, i) => (
             <div
               key={i}
-              className="group reveal border-t border-white/[0.05] last:border-b"
+              className="group reveal border-t border-black/[0.08] last:border-b"
               data-delay={`${i * 100}`}
             >
               <div className="py-10 lg:py-12 grid lg:grid-cols-[260px_1fr] gap-6 lg:gap-12">

@@ -67,7 +67,7 @@ export default function Skills() {
           {skillGroups.map((group, i) => (
             <div
               key={group.title}
-              className="group reveal border-t border-white/[0.05] last:border-b hover:bg-white/[0.01] transition-colors duration-500"
+              className="group reveal border-t border-black/[0.08] last:border-b hover:bg-black/[0.015] transition-colors duration-500"
               data-delay={`${i * 80}`}
             >
               <div className="py-7 lg:py-8 grid lg:grid-cols-[200px_1fr] gap-6 lg:gap-10 items-start">
@@ -85,7 +85,7 @@ export default function Skills() {
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 font-body text-2xs text-cream-dim border border-white/6 hover:border-gold/35 hover:text-gold transition-all duration-250 tracking-[0.1em] cursor-default"
+                      className="px-3 py-1.5 font-body text-2xs text-cream-dim border border-black/10 hover:border-gold/35 hover:text-gold transition-all duration-250 tracking-[0.1em] cursor-default"
                     >
                       {skill}
                     </span>

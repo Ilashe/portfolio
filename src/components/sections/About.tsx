@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CountUp from "@/components/CountUp";
 
 const stats = [
   { value: "3",   label: "AWS Certifications" },
@@ -34,7 +35,7 @@ export default function About() {
               <div className="absolute inset-0 -translate-x-2 -translate-y-2 border border-gold/6" />
 
               {/* Photo */}
-              <div className="relative w-full h-full overflow-hidden border border-white/5">
+              <div className="relative w-full h-full overflow-hidden border border-black/10">
                 <Image
                   src="/images/about.jpg"
                   alt="Ilashe Benjamin Joseph"
@@ -96,7 +97,7 @@ export default function About() {
                     className="font-display font-bold text-gold leading-none mb-1"
                     style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
                   >
-                    {value}
+                    <CountUp value={value} />
                   </div>
                   <div className="font-body text-2xs text-cream-faint uppercase tracking-[0.18em] leading-tight">{label}</div>
                 </div>
@@ -108,7 +109,7 @@ export default function About() {
               {["AWS", "DevOps", "HubSpot", "Claude Code", "Cloud Architecture", "IaC", "CI/CD", "Next.js", "Python", "Risk Management", "Telecom Engineering"].map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1.5 font-body text-2xs text-cream-faint border border-white/8 hover:border-gold/30 hover:text-gold transition-all duration-300 tracking-[0.12em] uppercase cursor-default"
+                  className="px-3 py-1.5 font-body text-2xs text-cream-faint border border-black/10 hover:border-gold/30 hover:text-gold transition-all duration-300 tracking-[0.12em] uppercase cursor-default"
                 >
                   {tag}
                 </span>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Magnetic from "@/components/Magnetic";
 
 const navLinks = [
   { label: "About",      href: "#about" },
@@ -26,7 +27,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-bg/90 backdrop-blur-xl border-b border-white/[0.04] py-4"
+          ? "bg-bg/90 backdrop-blur-xl border-b border-black/[0.06] py-4"
           : "py-7"
       }`}
     >
@@ -46,7 +47,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="hover-underline font-body text-[0.7rem] text-cream-dim hover:text-cream transition-colors duration-300 tracking-[0.22em] uppercase"
+                className="hover-underline font-body font-bold text-[0.7rem] text-cream hover:text-gold transition-colors duration-300 tracking-[0.22em] uppercase"
               >
                 {link.label}
               </Link>
@@ -55,15 +56,17 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <Link
-          href="#contact"
-          className="hidden md:inline-flex items-center gap-2.5 font-body text-[0.7rem] tracking-[0.22em] uppercase text-gold hover:text-gold-light transition-colors duration-300"
-        >
-          Hire Me
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </Link>
+        <Magnetic strength={0.3} className="hidden md:inline-block">
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-2.5 font-body font-extrabold text-[0.7rem] tracking-[0.22em] uppercase text-gold hover:text-gold-light transition-colors duration-300"
+          >
+            Hire Me
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        </Magnetic>
 
         {/* Mobile hamburger */}
         <button
@@ -79,14 +82,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-500 ${menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="bg-bg/98 backdrop-blur-xl border-t border-white/[0.04] px-6 py-8">
+        <div className="bg-bg/98 backdrop-blur-xl border-t border-black/[0.06] px-6 py-8">
           <ul className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-body text-sm text-cream-dim hover:text-cream tracking-[0.2em] uppercase transition-colors duration-200"
+                  className="font-body font-bold text-sm text-cream hover:text-gold tracking-[0.2em] uppercase transition-colors duration-200"
                 >
                   {link.label}
                 </Link>

@@ -105,7 +105,7 @@ export default function Certifications() {
           {certs.map((cert, i) => (
             <div
               key={cert.name}
-              className="group relative bg-surface border border-white/[0.04] hover:border-white/10 transition-all duration-400 p-5 flex flex-col gap-4 reveal"
+              className="group relative bg-surface border border-black/[0.07] hover:border-black/[0.14] shadow-sm transition-all duration-400 p-5 flex flex-col gap-4 reveal"
               data-delay={`${i * 50}`}
               style={{ borderTop: `1px solid ${cert.accent}20` }}
             >
@@ -148,8 +148,8 @@ export default function Certifications() {
                   {cert.name}
                 </h3>
                 <p
-                  className="font-body text-2xs tracking-wide"
-                  style={{ color: cert.accent + "90" }}
+                  className="font-body text-2xs tracking-wide font-semibold"
+                  style={{ color: cert.accent }}
                 >
                   {cert.issuer}
                 </p>

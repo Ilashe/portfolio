@@ -21,7 +21,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.04]">
+    <footer className="relative border-t border-black/[0.06]">
 
       {/* Top strip */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.04] py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="border-t border-black/[0.06] py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="font-body text-2xs text-cream-dim/60 tracking-[0.15em]">
             &copy; 2026 Ilashe Benjamin Joseph. All rights reserved.
           </p>

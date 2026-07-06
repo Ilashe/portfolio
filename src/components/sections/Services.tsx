@@ -88,7 +88,7 @@ export default function Services() {
           {services.map((service, i) => (
             <div
               key={service.number}
-              className="group reveal border-t border-white/[0.05] last:border-b cursor-pointer"
+              className="group reveal border-t border-black/[0.08] last:border-b cursor-pointer"
               data-delay={`${i * 60}`}
               onClick={() => setActive(active === i ? null : i)}
             >
@@ -111,16 +111,16 @@ export default function Services() {
                 <div className="flex items-center gap-4 flex-shrink-0">
                   <div className="hidden sm:flex gap-2">
                     {service.tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="px-2.5 py-1 font-body text-2xs text-cream-faint/50 border border-white/5 tracking-[0.1em]">
+                      <span key={tag} className="px-2.5 py-1 font-body text-2xs text-cream-faint/70 border border-black/10 tracking-[0.1em]">
                         {tag}
                       </span>
                     ))}
                   </div>
                   <div
-                    className={`w-6 h-6 border border-white/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${active === i ? "border-gold/40 bg-gold/10 rotate-45" : "group-hover:border-gold/25"}`}
+                    className={`w-6 h-6 border border-black/15 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${active === i ? "border-gold/40 bg-gold/10 rotate-45" : "group-hover:border-gold/25"}`}
                   >
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path d="M5 1v8M1 5h8" stroke={active === i ? "#C9A84C" : "#A8A49E"} strokeWidth="1.2" strokeLinecap="round"/>
+                      <path d="M5 1v8M1 5h8" stroke={active === i ? "#9C7A2A" : "#5B5548"} strokeWidth="1.2" strokeLinecap="round"/>
                     </svg>
                   </div>
                 </div>

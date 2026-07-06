@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Magnetic from "@/components/Magnetic";
 
 const contactInfo = [
   {
@@ -123,14 +124,14 @@ export default function Contact() {
               {contactInfo.map((item, i) => (
                 <div
                   key={item.label}
-                  className="group border-t border-white/[0.05] last:border-b py-5 flex items-center gap-5"
+                  className="group border-t border-black/10 last:border-b py-5 flex items-center gap-5"
                   style={{ transitionDelay: `${i * 40}ms` }}
                 >
-                  <span className="text-gold/40 group-hover:text-gold/70 transition-colors duration-300 flex-shrink-0">
+                  <span className="text-gold/60 group-hover:text-gold transition-colors duration-300 flex-shrink-0">
                     {item.icon}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <div className="font-body text-2xs text-cream-faint/50 tracking-[0.2em] uppercase mb-0.5">
+                    <div className="font-body text-2xs text-cream-faint tracking-[0.2em] uppercase mb-0.5">
                       {item.label}
                     </div>
                     <a
@@ -147,7 +148,7 @@ export default function Contact() {
                     height="12"
                     viewBox="0 0 12 12"
                     fill="none"
-                    className="flex-shrink-0 text-gold/0 group-hover:text-gold/50 transition-colors duration-300"
+                    className="flex-shrink-0 text-gold/0 group-hover:text-gold/60 transition-colors duration-300"
                   >
                     <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -156,23 +157,27 @@ export default function Contact() {
             </div>
 
             {/* Availability */}
-            <div className="flex items-center gap-3 px-5 py-4 border border-white/[0.05] bg-surface/50">
+            <div className="flex items-center gap-3 px-5 py-4 border border-black/10 bg-surface shadow-sm">
               <div className="relative flex-shrink-0">
-                <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                <div className="absolute inset-0 w-2 h-2 rounded-full bg-emerald-400 animate-ping opacity-50" />
+                <div className="w-2 h-2 rounded-full bg-emerald-600" />
+                <div className="absolute inset-0 w-2 h-2 rounded-full bg-emerald-600 animate-ping opacity-50" />
               </div>
-              <span className="font-body text-xs text-cream-dim/70 tracking-[0.08em]">
+              <span className="font-body text-xs text-cream-dim tracking-[0.08em]">
                 Available for new projects and engagements
               </span>
             </div>
           </div>
 
           {/* Right — Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 reveal" data-delay="160">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5 reveal bg-surface border border-black/10 shadow-lg p-6 sm:p-8 lg:p-10"
+            data-delay="160"
+          >
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
-                <label className="font-body text-2xs text-cream-faint/50 tracking-[0.25em] uppercase">
+                <label className="font-body text-2xs text-cream-dim font-semibold tracking-[0.25em] uppercase">
                   Name
                 </label>
                 <input
@@ -181,11 +186,11 @@ export default function Contact() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your full name"
-                  className="w-full bg-surface border border-white/10 focus:border-gold/50 text-cream font-body text-sm px-4 py-3 focus:outline-none placeholder:text-cream-faint/30 tracking-wide transition-colors duration-200"
+                  className="w-full bg-bg border border-black/20 focus:border-gold text-cream font-body text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/15 placeholder:text-cream-faint tracking-wide transition-all duration-200"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-body text-2xs text-cream-faint/50 tracking-[0.25em] uppercase">
+                <label className="font-body text-2xs text-cream-dim font-semibold tracking-[0.25em] uppercase">
                   Email
                 </label>
                 <input
@@ -194,13 +199,13 @@ export default function Contact() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="your@email.com"
-                  className="w-full bg-surface border border-white/10 focus:border-gold/50 text-cream font-body text-sm px-4 py-3 focus:outline-none placeholder:text-cream-faint/30 tracking-wide transition-colors duration-200"
+                  className="w-full bg-bg border border-black/20 focus:border-gold text-cream font-body text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/15 placeholder:text-cream-faint tracking-wide transition-all duration-200"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="font-body text-2xs text-cream-faint/50 tracking-[0.25em] uppercase">
+              <label className="font-body text-2xs text-cream-dim font-semibold tracking-[0.25em] uppercase">
                 Subject
               </label>
               <input
@@ -209,12 +214,12 @@ export default function Contact() {
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
                 placeholder="What can I help you with?"
-                className="w-full bg-surface border border-white/10 focus:border-gold/50 text-cream font-body text-sm px-4 py-3 focus:outline-none placeholder:text-cream-faint/30 tracking-wide transition-colors duration-200"
+                className="w-full bg-bg border border-black/20 focus:border-gold text-cream font-body text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/15 placeholder:text-cream-faint tracking-wide transition-all duration-200"
               />
             </div>
 
             <div className="flex flex-col gap-2 mb-2">
-              <label className="font-body text-2xs text-cream-faint/50 tracking-[0.25em] uppercase">
+              <label className="font-body text-2xs text-cream-dim font-semibold tracking-[0.25em] uppercase">
                 Message
               </label>
               <textarea
@@ -223,41 +228,43 @@ export default function Contact() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Tell me about your project or idea..."
-                className="w-full bg-surface border border-white/10 focus:border-gold/50 text-cream font-body text-sm px-4 py-3 focus:outline-none placeholder:text-cream-faint/30 tracking-wide resize-none transition-colors duration-200"
+                className="w-full bg-bg border border-black/20 focus:border-gold text-cream font-body text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/15 placeholder:text-cream-faint tracking-wide resize-none transition-all duration-200"
               />
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="group relative px-10 py-4 border border-gold/40 hover:border-gold text-cream font-body text-xs tracking-[0.3em] uppercase transition-all duration-400 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-gold/0 group-hover:bg-gold/8 transition-colors duration-400" />
-                <span className="relative flex items-center gap-3">
-                  {status === "loading" ? (
-                    <>
-                      <span className="w-3 h-3 border border-gold/50 border-t-gold rounded-full animate-spin" />
-                      Sending
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="group-hover:translate-x-1 transition-transform duration-300">
-                        <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </>
-                  )}
-                </span>
-              </button>
+              <Magnetic strength={0.2}>
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="group relative px-10 py-4 border border-gold/40 hover:border-gold text-cream font-body text-xs tracking-[0.3em] uppercase transition-all duration-400 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden"
+                >
+                  <span className="absolute inset-0 bg-gold/0 group-hover:bg-gold/8 transition-colors duration-400" />
+                  <span className="relative flex items-center gap-3">
+                    {status === "loading" ? (
+                      <>
+                        <span className="w-3 h-3 border border-gold/50 border-t-gold rounded-full animate-spin" />
+                        Sending
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="group-hover:translate-x-1 transition-transform duration-300">
+                          <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </>
+                    )}
+                  </span>
+                </button>
+              </Magnetic>
 
               {status === "success" && (
-                <p className="font-body text-xs text-emerald-400/80 tracking-[0.1em]">
+                <p className="font-body text-xs text-emerald-700 font-semibold tracking-[0.1em]">
                   Message sent. I&apos;ll be in touch shortly.
                 </p>
               )}
               {status === "error" && (
-                <p className="font-body text-xs text-red-400/80 tracking-[0.1em]">
+                <p className="font-body text-xs text-red-600 font-semibold tracking-[0.1em]">
                   Something went wrong. Email me directly.
                 </p>
               )}

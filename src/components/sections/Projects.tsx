@@ -1,6 +1,34 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, type MouseEvent } from "react";
+
+function useTilt(maxTilt = 8) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  function onMouseMove(e: MouseEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rx = (0.5 - py) * maxTilt * 2;
+    const ry = (px - 0.5) * maxTilt * 2;
+    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+    el.style.setProperty("--glow", "1");
+  }
+
+  function onMouseLeave() {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+    el.style.setProperty("--glow", "0");
+  }
+
+  return { ref, onMouseMove, onMouseLeave };
+}
 
 const projects = [
   {
@@ -78,8 +106,23 @@ const projects = [
 ];
 
 function FeaturedCard({ project }: { project: typeof projects[0] }) {
+  const tilt = useTilt(4);
   return (
-    <div className="group relative overflow-hidden bg-surface-2 border border-white/5 hover:border-gold/20 transition-all duration-500">
+    <div
+      ref={tilt.ref}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      className="group relative overflow-hidden bg-surface-2 border border-black/10 hover:border-gold/30 shadow-sm will-change-transform"
+      style={{ "--glow": 0, transition: "border-color 0.5s ease, transform 0.25s ease-out" } as React.CSSProperties}
+    >
+      {/* Cursor spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+        style={{
+          opacity: "var(--glow, 0)",
+          background: "radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(201,168,76,0.08), transparent 70%)",
+        }}
+      />
       <div className="grid lg:grid-cols-[1fr_1fr] min-h-[420px]">
 
         {/* Image side */}
@@ -103,7 +146,7 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
 
         {/* Content side */}
         <div className="flex flex-col justify-end p-8 lg:p-10">
-          <div className="font-display text-6xl font-bold text-white/3 leading-none mb-4 select-none">01</div>
+          <div className="font-display text-6xl font-bold text-black/[0.04] leading-none mb-4 select-none">01</div>
           <h3 className="font-display font-bold text-cream text-2xl lg:text-3xl leading-tight mb-4 group-hover:text-gold-light transition-colors duration-400">
             {project.title}
           </h3>
@@ -127,12 +170,24 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
 }
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const tilt = useTilt(6);
   return (
+    <div className="reveal" style={{ minHeight: "320px" }} data-delay={`${index * 60}`}>
     <div
-      className="group relative overflow-hidden bg-surface border border-white/[0.04] hover:border-gold/18 transition-all duration-500 flex flex-col reveal"
-      style={{ minHeight: "320px" }}
-      data-delay={`${index * 60}`}
+      ref={tilt.ref}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      className="group relative overflow-hidden bg-surface border border-black/10 hover:border-gold/25 shadow-sm flex flex-col h-full will-change-transform"
+      style={{ "--glow": 0, transition: "border-color 0.5s ease, transform 0.25s ease-out" } as React.CSSProperties}
     >
+      {/* Cursor spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+        style={{
+          opacity: "var(--glow, 0)",
+          background: "radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(201,168,76,0.1), transparent 70%)",
+        }}
+      />
       {/* Background image */}
       <Image
         src={project.image}
@@ -149,7 +204,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
       {/* Number */}
-      <div className="absolute top-4 right-4 font-display text-4xl font-bold text-white/4 select-none leading-none">
+      <div className="absolute top-4 right-4 font-display text-4xl font-bold text-black/[0.05] select-none leading-none">
         {String(index + 2).padStart(2, "0")}
       </div>
 
@@ -169,6 +224,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 }
